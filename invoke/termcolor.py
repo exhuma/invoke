@@ -60,9 +60,11 @@ def color_wrapper(color_code: int) -> Callable[..., str]:
             used to determine if we should drop the escape-codes (and print
             simple black-and-white text) or not.
         """
-        if (DISABLE_COLORS or
-                not stream.isatty() or
-                platform not in ('linux', 'cygwin', 'darwin')):
+        if (
+            DISABLE_COLORS
+            or not stream.isatty()
+            or platform not in ('linux', 'cygwin', 'darwin')
+        ):
             # We only want color output on a TTY and on a platform which supports
             # ANSI color codes. For all other cases we just return the text
             # unmodified.
@@ -70,12 +72,13 @@ def color_wrapper(color_code: int) -> Callable[..., str]:
 
         modifier = 1 if bold else 0
         return "\033[%d;%dm%s\033[0m" % (modifier, color_code, text)
+
     return coloriser
 
 
 def sticky_coloriser(
-        key: str,
-        color_choice: List[int] = None) -> Callable[..., str]:
+    key: str, color_choice: List[int] = None
+) -> Callable[..., str]:
     """
     Returns a random color for a given key. It guarantees that the same
     coloriser is returned for the same key.
