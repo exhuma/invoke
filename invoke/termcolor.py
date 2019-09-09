@@ -20,7 +20,7 @@ from typing import Callable, List
 from typing.io import IO
 
 #: If this is set to "True", no color output will be enabled
-DISABLE_COLORS = bool(getenv('INVOKE_DISABLE_COLORS', False))
+DISABLE_COLORS = bool(getenv("INVOKE_DISABLE_COLORS", False))
 
 #: This collection keeps track of already assigned colorisers, so the same can
 #: be used repeatedly for the same key
